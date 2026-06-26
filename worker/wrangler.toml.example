@@ -1,0 +1,45 @@
+name = "seocontent"
+main = "src/index.js"
+compatibility_date = "2025-03-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Account — pegue o seu em: Cloudflare dashboard → Workers & Pages → Overview (Account ID).
+account_id = "__REPLACE_ME_CLOUDFLARE_ACCOUNT_ID__"
+
+# Domínio custom — troque pelo SEU subdomínio (precisa estar na sua conta Cloudflare).
+routes = [
+  { pattern = "seocontent.SEU-DOMINIO.com", custom_domain = true }
+]
+
+# Static assets servidos do public/ (HTML do dashboard embedded)
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+# KV — estado de aprovação por cliente. Crie com:
+#   npx wrangler kv namespace create STATE   → copie o id retornado aqui.
+[[kv_namespaces]]
+binding = "STATE"
+id = "__REPLACE_ME_KV_NAMESPACE_ID__"
+
+# D1 — banco relacional. Crie com:
+#   npx wrangler d1 create agency-platform-db   → copie o database_id retornado aqui.
+[[d1_databases]]
+binding = "DB"
+database_name = "agency-platform-db"
+database_id = "__REPLACE_ME_D1_DATABASE_ID__"
+
+# Cron trigger único — toda hora cheia. O Worker filtra por scheduled_for ±30min,
+# então suporta qualquer horário pra qualquer cliente sem mudar config.
+[triggers]
+crons = ["0 * * * *"]
+
+# Variáveis públicas (não-secret). Ajuste os domínios que podem embedar o dashboard.
+[vars]
+ENVIRONMENT = "production"
+ALLOWED_FRAME_ORIGINS = "https://app.gohighlevel.com"
+
+# Secrets (set via `npx wrangler secret put <NOME>`):
+#   GHL_API_KEY     — pit-... do GHL pra publicar posts
+#   ADMIN_TOKEN     — token compartilhado Mac↔Worker pra POST /admin/queue

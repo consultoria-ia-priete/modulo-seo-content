@@ -1,0 +1,34 @@
+# ─── Segredos e credenciais (NUNCA versionar) ──────────────────────────
+.mcp.json
+.env
+.env.*
+!.env.example
+*.secret
+secrets/
+.dev.vars
+.dev.vars.*
+
+# ─── Cloudflare / Wrangler (config local com IDs reais) ────────────────
+wrangler.toml
+!wrangler.toml.example
+.wrangler/
+
+# ─── Backups do sanitize.sh (contêm valores reais) ─────────────────────
+*.bak
+
+# ─── Dependências / build ──────────────────────────────────────────────
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ─── Estado local de provisionamento ───────────────────────────────────
+.sscia-state.json
+.sscia-backup/
+
+# ─── SO ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

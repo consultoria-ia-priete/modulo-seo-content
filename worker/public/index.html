@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO Content — Aprovação</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="brand">
+    <strong id="client-name">SEO Content</strong>
+    <span class="dim">— aprovação de criativos</span>
+  </div>
+  <div class="stats" id="stats">
+    <span class="stat" data-status="pending">⏳ <b id="count-pending">0</b> aguardando</span>
+    <span class="stat" data-status="approved">✅ <b id="count-approved">0</b> aprovados</span>
+    <span class="stat" data-status="published">📢 <b id="count-published">0</b> publicados</span>
+  </div>
+</header>
+
+<div class="info-banner">
+  <strong>Regra:</strong> você pode pedir até <b>2 ajustes por peça</b>. A IA aplica a correção e devolve pra revisão. Depois do 2º, ou aprova ou pula. Isso protege o cronograma.
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab" data-tab="agendados">📅 Agendados <span class="tab-count" id="tab-count-agendados">0</span></button>
+  <button class="tab" data-tab="publicados">📢 Publicados <span class="tab-count" id="tab-count-publicados">0</span></button>
+  <button class="tab tab-review" data-tab="revisar" hidden>🔄 Revisar <span class="tab-count" id="tab-count-revisar">0</span></button>
+</nav>
+
+<main id="grid" class="grid">
+  <div class="loading">Carregando criativos...</div>
+</main>
+
+<!-- Lightbox Modal pra navegar nos slides -->
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lightbox-close" type="button" aria-label="Fechar">×</button>
+  <button class="lightbox-prev" type="button" aria-label="Anterior">‹</button>
+  <div class="lightbox-stage">
+    <img id="lightbox-img" alt="">
+    <div class="lightbox-info">
+      <span id="lightbox-title"></span>
+      <span class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">1</span></span>
+    </div>
+  </div>
+  <button class="lightbox-next" type="button" aria-label="Próximo">›</button>
+</div>
+
+<!-- Reject Modal -->
+<div id="reject-modal" class="reject-overlay" hidden>
+  <div class="reject-box">
+    <h3>✗ Pedir ajuste</h3>
+    <p class="dim" id="reject-target"></p>
+    <label>O que tá errado? <span class="dim">(opcional)</span></label>
+    <textarea id="reject-motivo" rows="2" placeholder="Ex: a headline não bateu com nossa proposta"></textarea>
+    <label>Direção pra refazer <span class="dim">(quanto mais específico, melhor)</span></label>
+    <textarea id="reject-direcao" rows="4" placeholder="Ex: troque o ângulo de 'novidade' pra 'resultado concreto'. Mostre números reais."></textarea>
+    <div class="reject-warning" id="reject-warning-text">⚠️ Você tem até 2 ajustes por peça. Use bem — quanto mais específica a direção, melhor o resultado.</div>
+    <div class="reject-actions">
+      <button class="btn btn-cancel" id="reject-cancel">Cancelar</button>
+      <button class="btn btn-confirm" id="reject-confirm">Pedir ajuste</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span>SEO Content — CRM Funnels</span>
+  <span class="dim" id="updated-at"></span>
+</footer>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>

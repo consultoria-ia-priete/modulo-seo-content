@@ -1,0 +1,16 @@
+{
+  "name": "seocontent-worker",
+  "version": "0.1.0",
+  "description": "Dashboard público de aprovação de criativos (multi-cliente, embedded CRM Funnels)",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "kv:list": "wrangler kv key list --binding=STATE",
+    "kv:get": "wrangler kv key get --binding=STATE"
+  },
+  "devDependencies": {
+    "wrangler": "^4.87.0"
+  }
+}
